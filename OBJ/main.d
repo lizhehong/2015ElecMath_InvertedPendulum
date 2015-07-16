@@ -16,3 +16,4 @@
 ..\obj\main.o: ..\HARDWARE\Led.h
 ..\obj\main.o: ..\HARDWARE\usart.h
 ..\obj\main.o: D:\MySoftware\keil4\ARM\ARMCC\bin\..\include\stdio.h
+..\obj\main.o: ..\HARDWARE\Key.h

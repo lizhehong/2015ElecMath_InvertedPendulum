@@ -1,6 +1,6 @@
 Dependencies for Project 'ICAPTURE', Target 'Target 1': (DO NOT MODIFY !)
-F (.\main.c)(0x55A612DD)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\USER -I..\STM32F10x_FWLib\inc -I..\CORE -I..\HARDWARE -I..\SYS-I D:\MySoftware\keil4\ARM\RV31\INC-I D:\MySoftware\keil4\ARM\CMSIS\Include-I D:\MySoftware\keil4\ARM\Inc\ST\STM32F10x-DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -o ..\obj\main.o --omf_browse ..\obj\main.crf --depend ..\obj\main.d)
-I (D:\MyDocument\SoftwareDevelop\GitHub\repositories\2015ElecMath_InvertedPendulum\HARDWARE\usart.h)(0x55A5F643)
+F (.\main.c)(0x55A71416)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\USER -I..\STM32F10x_FWLib\inc -I..\CORE -I..\HARDWARE -I..\SYS-I D:\MySoftware\keil4\ARM\RV31\INC-I D:\MySoftware\keil4\ARM\CMSIS\Include-I D:\MySoftware\keil4\ARM\Inc\ST\STM32F10x-DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -o ..\obj\main.o --omf_browse ..\obj\main.crf --depend ..\obj\main.d)
+I (D:\MyDocument\SoftwareDevelop\GitHub\repositories\2015ElecMath_InvertedPendulum\SYS\Sys.h)(0x55A5D470)
 I (D:\MyDocument\SoftwareDevelop\GitHub\repositories\2015ElecMath_InvertedPendulum\USER\stm32f10x.h)(0x4D783CB4)
 I (D:\MyDocument\SoftwareDevelop\GitHub\repositories\2015ElecMath_InvertedPendulum\CORE\core_cm3.h)(0x4D523B58)
 I (D:\MySoftware\keil4\ARM\ARMCC\include\stdint.h)(0x51C7B744)
@@ -12,10 +12,10 @@ I (D:\MyDocument\SoftwareDevelop\GitHub\repositories\2015ElecMath_InvertedPendul
 I (D:\MyDocument\SoftwareDevelop\GitHub\repositories\2015ElecMath_InvertedPendulum\STM32F10x_FWLib\inc\stm32f10x_tim.h)(0x4D783BB4)
 I (D:\MyDocument\SoftwareDevelop\GitHub\repositories\2015ElecMath_InvertedPendulum\STM32F10x_FWLib\inc\stm32f10x_usart.h)(0x4D783BB4)
 I (D:\MyDocument\SoftwareDevelop\GitHub\repositories\2015ElecMath_InvertedPendulum\STM32F10x_FWLib\inc\misc.h)(0x4D783BB4)
-I (D:\MySoftware\keil4\ARM\ARMCC\include\stdio.h)(0x51C7B744)
 I (D:\MyDocument\SoftwareDevelop\GitHub\repositories\2015ElecMath_InvertedPendulum\SYS\Delay.h)(0x55A5D321)
-I (D:\MyDocument\SoftwareDevelop\GitHub\repositories\2015ElecMath_InvertedPendulum\SYS\Sys.h)(0x55A5D470)
 I (D:\MyDocument\SoftwareDevelop\GitHub\repositories\2015ElecMath_InvertedPendulum\HARDWARE\Led.h)(0x55A5D4A3)
+I (D:\MyDocument\SoftwareDevelop\GitHub\repositories\2015ElecMath_InvertedPendulum\HARDWARE\usart.h)(0x55A71413)
+I (D:\MySoftware\keil4\ARM\ARMCC\include\stdio.h)(0x51C7B744)
 F (.\stm32f10x_it.c)(0x559D0EA3)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\USER -I..\STM32F10x_FWLib\inc -I..\CORE -I..\HARDWARE -I..\SYS-I D:\MySoftware\keil4\ARM\RV31\INC-I D:\MySoftware\keil4\ARM\CMSIS\Include-I D:\MySoftware\keil4\ARM\Inc\ST\STM32F10x-DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -o ..\obj\stm32f10x_it.o --omf_browse ..\obj\stm32f10x_it.crf --depend ..\obj\stm32f10x_it.d)
 I (D:\MyDocument\SoftwareDevelop\GitHub\repositories\2015ElecMath_InvertedPendulum\USER\stm32f10x_it.h)(0x4D99A426)
 I (D:\MyDocument\SoftwareDevelop\GitHub\repositories\2015ElecMath_InvertedPendulum\USER\stm32f10x.h)(0x4D783CB4)
@@ -41,8 +41,8 @@ I (D:\MyDocument\SoftwareDevelop\GitHub\repositories\2015ElecMath_InvertedPendul
 I (D:\MyDocument\SoftwareDevelop\GitHub\repositories\2015ElecMath_InvertedPendulum\STM32F10x_FWLib\inc\stm32f10x_tim.h)(0x4D783BB4)
 I (D:\MyDocument\SoftwareDevelop\GitHub\repositories\2015ElecMath_InvertedPendulum\STM32F10x_FWLib\inc\stm32f10x_usart.h)(0x4D783BB4)
 I (D:\MyDocument\SoftwareDevelop\GitHub\repositories\2015ElecMath_InvertedPendulum\STM32F10x_FWLib\inc\misc.h)(0x4D783BB4)
-F (..\HARDWARE\usart.c)(0x55A5F0C5)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\USER -I..\STM32F10x_FWLib\inc -I..\CORE -I..\HARDWARE -I..\SYS-I D:\MySoftware\keil4\ARM\RV31\INC-I D:\MySoftware\keil4\ARM\CMSIS\Include-I D:\MySoftware\keil4\ARM\Inc\ST\STM32F10x-DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -o ..\obj\usart.o --omf_browse ..\obj\usart.crf --depend ..\obj\usart.d)
-I (D:\MyDocument\SoftwareDevelop\GitHub\repositories\2015ElecMath_InvertedPendulum\HARDWARE\usart.h)(0x55A5F643)
+F (..\HARDWARE\usart.c)(0x55A71432)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\USER -I..\STM32F10x_FWLib\inc -I..\CORE -I..\HARDWARE -I..\SYS-I D:\MySoftware\keil4\ARM\RV31\INC-I D:\MySoftware\keil4\ARM\CMSIS\Include-I D:\MySoftware\keil4\ARM\Inc\ST\STM32F10x-DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -o ..\obj\usart.o --omf_browse ..\obj\usart.crf --depend ..\obj\usart.d)
+I (D:\MyDocument\SoftwareDevelop\GitHub\repositories\2015ElecMath_InvertedPendulum\HARDWARE\usart.h)(0x55A71413)
 I (D:\MyDocument\SoftwareDevelop\GitHub\repositories\2015ElecMath_InvertedPendulum\USER\stm32f10x.h)(0x4D783CB4)
 I (D:\MyDocument\SoftwareDevelop\GitHub\repositories\2015ElecMath_InvertedPendulum\CORE\core_cm3.h)(0x4D523B58)
 I (D:\MySoftware\keil4\ARM\ARMCC\include\stdint.h)(0x51C7B744)
@@ -68,6 +68,7 @@ I (D:\MyDocument\SoftwareDevelop\GitHub\repositories\2015ElecMath_InvertedPendul
 I (D:\MyDocument\SoftwareDevelop\GitHub\repositories\2015ElecMath_InvertedPendulum\STM32F10x_FWLib\inc\stm32f10x_tim.h)(0x4D783BB4)
 I (D:\MyDocument\SoftwareDevelop\GitHub\repositories\2015ElecMath_InvertedPendulum\STM32F10x_FWLib\inc\stm32f10x_usart.h)(0x4D783BB4)
 I (D:\MyDocument\SoftwareDevelop\GitHub\repositories\2015ElecMath_InvertedPendulum\STM32F10x_FWLib\inc\misc.h)(0x4D783BB4)
+F (..\HARDWARE\Key.c)(0x55A71798)()
 F (..\SYS\Delay.c)(0x55A5CEC3)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\USER -I..\STM32F10x_FWLib\inc -I..\CORE -I..\HARDWARE -I..\SYS-I D:\MySoftware\keil4\ARM\RV31\INC-I D:\MySoftware\keil4\ARM\CMSIS\Include-I D:\MySoftware\keil4\ARM\Inc\ST\STM32F10x-DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -o ..\obj\delay.o --omf_browse ..\obj\delay.crf --depend ..\obj\delay.d)
 I (D:\MyDocument\SoftwareDevelop\GitHub\repositories\2015ElecMath_InvertedPendulum\SYS\Delay.h)(0x55A5D321)
 I (D:\MyDocument\SoftwareDevelop\GitHub\repositories\2015ElecMath_InvertedPendulum\USER\stm32f10x.h)(0x4D783CB4)
