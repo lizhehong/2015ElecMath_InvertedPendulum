@@ -1,15 +1,14 @@
-#include "usart.h"
-#include "Delay.h"
 #include "Sys.h"
+#include "Delay.h"
 #include "Led.h"
- int main(void)
- {
-	 delay_init(); 
-	 usartInit(9600);
-	 LED_Init();
-	 while(1){
-			LED1 = ~LED1;
-			delay_ms(1000);
+#include "usart.h"
+int main(){
+	delay_init();
+	LED_Init();
+	usartInit(9600);
+	while(1){
+		LED1 = ~LED1;
+		LED2 = ~LED2;
+		delay_ms(1000);
 	}
- }
-
+}

@@ -1,5 +1,5 @@
 Dependencies for Project 'ICAPTURE', Target 'Target 1': (DO NOT MODIFY !)
-F (.\main.c)(0x55A5D582)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\USER -I..\STM32F10x_FWLib\inc -I..\CORE -I..\HARDWARE -I..\SYS-I D:\MySoftware\keil4\ARM\RV31\INC-I D:\MySoftware\keil4\ARM\CMSIS\Include-I D:\MySoftware\keil4\ARM\Inc\ST\STM32F10x-DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -o ..\obj\main.o --omf_browse ..\obj\main.crf --depend ..\obj\main.d)
+F (.\main.c)(0x55A612DD)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\USER -I..\STM32F10x_FWLib\inc -I..\CORE -I..\HARDWARE -I..\SYS-I D:\MySoftware\keil4\ARM\RV31\INC-I D:\MySoftware\keil4\ARM\CMSIS\Include-I D:\MySoftware\keil4\ARM\Inc\ST\STM32F10x-DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -o ..\obj\main.o --omf_browse ..\obj\main.crf --depend ..\obj\main.d)
 I (D:\MyDocument\SoftwareDevelop\GitHub\repositories\2015ElecMath_InvertedPendulum\HARDWARE\usart.h)(0x55A5F643)
 I (D:\MyDocument\SoftwareDevelop\GitHub\repositories\2015ElecMath_InvertedPendulum\USER\stm32f10x.h)(0x4D783CB4)
 I (D:\MyDocument\SoftwareDevelop\GitHub\repositories\2015ElecMath_InvertedPendulum\CORE\core_cm3.h)(0x4D523B58)

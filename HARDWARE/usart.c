@@ -1,7 +1,7 @@
 #include "usart.h"
 #define USART_REC_LEN  			200  //串口缓存器的长度
-//串口初始化
-void usartInit(u32 bound){
+//串口配置初始化
+void usartConfigInit(u32 bound){
 	GPIO_InitTypeDef GPIO_InitStructure;
 	USART_InitTypeDef USART_InitStructure;
 	NVIC_InitTypeDef NVIC_InitStructure;
@@ -40,6 +40,23 @@ void usartInit(u32 bound){
 
   USART_Cmd(USART1, ENABLE); 
 }
+//这里的数组长度请保持与初始化长度的一致
+#define usartHeadLen 2
+u8 usartHead[usartHeadLen];
+void usartParamsInit(){
+	usartHead[0] = 0x90;//用于电机控制的串口命令头
+	usartHead[1] = 0x70;//用于HMI串口屏幕的命令头
+}
+
+//串口初始化
+void usartInit(u32 bound){
+	
+	usartParamsInit();
+	usartConfigInit(bound);
+}
+
+
+
 //串口中断函数 需要的数据结构定义
 u8 TMP_Flag_End = 0;
 u8 TMP_Flag_Head = 0;
@@ -48,7 +65,7 @@ u16 TMP_STA = 0 ;
 u8 USART_RX_BUF[USART_REC_LEN];  
 //串口中断函数
 void USART1_IRQHandler(){
-	u8 Res;
+	u8 Res,i;
 	if(USART_GetFlagStatus(USART1,USART_IT_RXNE)!=RESET){
 		Res = USART_ReceiveData(USART1);
 		//得到数据尾
@@ -56,12 +73,21 @@ void USART1_IRQHandler(){
 			TMP_Flag_End++;
 			//USART_SendData(USART1,0xff);
 		}
-		//得到数据头
-		if(Res == 0x90){
-			TMP_Flag_Head = 1;
-			TMP_Flag_End = 0;
-			//USART_SendData(USART1,TMP_Flag_Head);
+		//得到数据头 
+		//采用轮训的方式 但是必须在初始化的时候 初始命令头的值
+		for(i=0;i<usartHeadLen;i++){
+			if(Res == usartHead[i]){
+				TMP_Flag_Head = 1;
+				TMP_Flag_End = 0;
+				USART_SendData(USART1,usartHead[i]);
+			}
 		}
+		
+//		if(Res == 0x90){
+//			TMP_Flag_Head = 1;
+//			TMP_Flag_End = 0;
+//			//USART_SendData(USART1,TMP_Flag_Head);
+//		}
 		//得到数据头 并且没有 得到数据尾时 这里的缓冲区 
 		//包含命令头
 		if(TMP_Flag_End == 0 && TMP_Flag_Head ==1){
