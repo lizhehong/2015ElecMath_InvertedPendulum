@@ -427,6 +427,16 @@
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\Key.c</FilePath>
             </File>
+            <File>
+              <FileName>StepperMotor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\StepperMotor.c</FilePath>
+            </File>
+            <File>
+              <FileName>FreePole.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\FreePole.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -441,6 +451,11 @@
               <FileName>Sys.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\SYS\Sys.c</FilePath>
+            </File>
+            <File>
+              <FileName>TIM2_CH4_PWM.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\TIM2_CH4_PWM.c</FilePath>
             </File>
           </Files>
         </Group>

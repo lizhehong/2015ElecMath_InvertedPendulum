@@ -4,6 +4,13 @@
 #include "stdio.h"	
 
 
+#define USART_REC_LEN  			200  
+
+extern u8 TMP_Flag_End ;
+extern u8 TMP_Flag_Head;
+extern u16 TMP_STA ;
+extern u8 USART_RX_BUF[USART_REC_LEN]; 
+
 
 
 

@@ -61,7 +61,6 @@ void usartInit(u32 bound){
 u8 TMP_Flag_End = 0;
 u8 TMP_Flag_Head = 0;
 u16 TMP_STA = 0 ;
-#define USART_REC_LEN  			200  
 u8 USART_RX_BUF[USART_REC_LEN];  
 //串口中断函数
 void USART1_IRQHandler(){
