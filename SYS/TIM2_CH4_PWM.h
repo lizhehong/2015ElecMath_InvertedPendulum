@@ -3,6 +3,9 @@
 #include "stm32f10x.h"
 #include "Sys.h"
 
+#define USART_MINI256Z_AngleSpeed 0x96
+
+
 //定时器2PWM设置频率和脉冲数
 void SET_TIM2_CH4_Fre_AND_PULSENUM(uint16_t fre,uint16_t  pulseNum,char dir);
 //定时器2配置 PWM

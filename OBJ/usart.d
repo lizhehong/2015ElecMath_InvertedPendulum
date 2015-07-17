@@ -17,5 +17,6 @@
 ..\obj\usart.o: D:\MySoftware\keil4\ARM\ARMCC\bin\..\include\string.h
 ..\obj\usart.o: D:\MySoftware\keil4\ARM\ARMCC\bin\..\include\stdlib.h
 ..\obj\usart.o: ..\HARDWARE\Led.h
-..\obj\usart.o: ..\SYS\TIM2_CH4_PWM.h
 ..\obj\usart.o: ..\SYS\Sys.h
+..\obj\usart.o: ..\SYS\TIM2_CH4_PWM.h
+..\obj\usart.o: ..\HARDWARE\FreePole.h

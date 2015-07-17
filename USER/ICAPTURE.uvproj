@@ -212,7 +212,7 @@
             <hadIRAM2>0</hadIRAM2>
             <hadIROM2>0</hadIROM2>
             <StupSel>8</StupSel>
-            <useUlib>0</useUlib>
+            <useUlib>1</useUlib>
             <EndSel>0</EndSel>
             <uLtcg>0</uLtcg>
             <RoSelD>3</RoSelD>
@@ -437,6 +437,11 @@
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\FreePole.c</FilePath>
             </File>
+            <File>
+              <FileName>MINI256Z.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\MINI256Z.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -456,6 +461,11 @@
               <FileName>TIM2_CH4_PWM.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\TIM2_CH4_PWM.c</FilePath>
+            </File>
+            <File>
+              <FileName>TIM4.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\SYS\TIM4.c</FilePath>
             </File>
           </Files>
         </Group>

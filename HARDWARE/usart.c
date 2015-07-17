@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include "Led.h"
 #include "TIM2_CH4_PWM.h"
+#include "FreePole.h"
 #define USART_REC_LEN  			200  //串口缓存器的长度
 //串口配置初始化
 void usartConfigInit(u32 bound){
@@ -46,11 +47,12 @@ void usartConfigInit(u32 bound){
   USART_Cmd(USART1, ENABLE); 
 }
 //这里的数组长度请保持与初始化长度的一致
-#define usartHeadLen 2
+#define usartHeadLen 3
 u8 usartHead[usartHeadLen];
 void usartParamsInit(){
-	usartHead[0] = 0x90;//用于电机控制的串口命令头
+	usartHead[0] = 0x90;//用于设置电机控制的串口命令头
 	usartHead[1] = 0x70;//用于HMI串口屏幕的命令头
+	usartHead[2] = 0x80;//得到stm32数据的命令头
 }
 //串口中断函数 需要的数据结构定义
 u8 TMP_Flag_End = 0;
@@ -118,6 +120,9 @@ void USART1_IRQHandler(){
 						case USART_TB6560_PULSENUM:	StepperMotor.PULSE_SETPOINT = atoi(StepperMotor.USART_DATA);
 																				SET_TIM2_CH4_Fre_AND_PULSENUM(StepperMotor.FRE,StepperMotor.PULSE_SETPOINT,StepperMotor.DIR);
 																				USART_SendData(USART1,StepperMotor.PULSE_SETPOINT);
+																				break;
+						case USART_MINI256Z_AngleSpeed: 	
+																				printf("%f",FreePole.AngleSpeed );
 																				break;
 						default: break;
 					}

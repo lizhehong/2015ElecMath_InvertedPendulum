@@ -1,0 +1,16 @@
+..\obj\tim4.o: ..\SYS\TIM4.c
+..\obj\tim4.o: ..\SYS\TIM4.h
+..\obj\tim4.o: ..\USER\stm32f10x.h
+..\obj\tim4.o: ..\CORE\core_cm3.h
+..\obj\tim4.o: D:\MySoftware\keil4\ARM\ARMCC\bin\..\include\stdint.h
+..\obj\tim4.o: ..\USER\system_stm32f10x.h
+..\obj\tim4.o: ..\USER\stm32f10x_conf.h
+..\obj\tim4.o: ..\STM32F10x_FWLib\inc\stm32f10x_dbgmcu.h
+..\obj\tim4.o: ..\USER\stm32f10x.h
+..\obj\tim4.o: ..\STM32F10x_FWLib\inc\stm32f10x_gpio.h
+..\obj\tim4.o: ..\STM32F10x_FWLib\inc\stm32f10x_rcc.h
+..\obj\tim4.o: ..\STM32F10x_FWLib\inc\stm32f10x_tim.h
+..\obj\tim4.o: ..\STM32F10x_FWLib\inc\stm32f10x_usart.h
+..\obj\tim4.o: ..\STM32F10x_FWLib\inc\misc.h
+..\obj\tim4.o: ..\HARDWARE\MINI256Z.h
+..\obj\tim4.o: ..\HARDWARE\FreePole.h

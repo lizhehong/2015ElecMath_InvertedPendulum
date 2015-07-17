@@ -1,5 +1,6 @@
 #ifndef __LED_H
 #define __LED_H	 
+#include "Sys.h"
 #include "stm32f10x.h"
 #define LED1 PAout(2)	    
 #define LED2 PAout(3)	   

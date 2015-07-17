@@ -22,3 +22,5 @@
 ..\obj\main.o: ..\HARDWARE\FreePole.h
 ..\obj\main.o: D:\MySoftware\keil4\ARM\ARMCC\bin\..\include\string.h
 ..\obj\main.o: D:\MySoftware\keil4\ARM\ARMCC\bin\..\include\stdlib.h
+..\obj\main.o: ..\HARDWARE\MINI256Z.h
+..\obj\main.o: ..\SYS\TIM4.h

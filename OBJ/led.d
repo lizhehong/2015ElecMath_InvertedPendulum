@@ -1,5 +1,6 @@
 ..\obj\led.o: ..\HARDWARE\Led.c
 ..\obj\led.o: ..\HARDWARE\led.h
+..\obj\led.o: ..\SYS\Sys.h
 ..\obj\led.o: ..\USER\stm32f10x.h
 ..\obj\led.o: ..\CORE\core_cm3.h
 ..\obj\led.o: D:\MySoftware\keil4\ARM\ARMCC\bin\..\include\stdint.h
