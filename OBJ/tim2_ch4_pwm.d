@@ -18,3 +18,4 @@
 ..\obj\tim2_ch4_pwm.o: D:\MySoftware\keil4\ARM\ARMCC\bin\..\include\stdio.h
 ..\obj\tim2_ch4_pwm.o: ..\SYS\Delay.h
 ..\obj\tim2_ch4_pwm.o: ..\HARDWARE\FreePole.h
+..\obj\tim2_ch4_pwm.o: ..\HARDWARE\Led.h

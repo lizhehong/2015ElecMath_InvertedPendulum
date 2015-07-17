@@ -21,7 +21,10 @@ typedef struct{
 
 extern MOTORtypedef StepperMotor;
 
-//步进电机初始化
-void StepperMotorInit(void);
-
+//获得串口的电机数据
+//void getMotorParams4Usart(void);
+//初始化电机参数
+void MotorParamsInit(void);
+//初始化电机引脚
+void Motor_GPIO_Configuration(void);
 #endif

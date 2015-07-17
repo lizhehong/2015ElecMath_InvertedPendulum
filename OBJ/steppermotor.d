@@ -18,3 +18,4 @@
 ..\obj\steppermotor.o: D:\MySoftware\keil4\ARM\ARMCC\bin\..\include\stdlib.h
 ..\obj\steppermotor.o: ..\SYS\TIM2_CH4_PWM.h
 ..\obj\steppermotor.o: ..\SYS\Sys.h
+..\obj\steppermotor.o: ..\HARDWARE\Led.h

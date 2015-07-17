@@ -11,11 +11,8 @@ extern u8 TMP_Flag_Head;
 extern u16 TMP_STA ;
 extern u8 USART_RX_BUF[USART_REC_LEN]; 
 
-
-
-
-
-void usartInit(u32 bound);
+void usartConfigInit(u32 bound);
+void usartParamsInit(void);
 void USART_IRQHandler(void);
 #endif
 

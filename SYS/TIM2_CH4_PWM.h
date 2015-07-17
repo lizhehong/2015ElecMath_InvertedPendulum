@@ -7,5 +7,7 @@
 void SET_TIM2_CH4_Fre_AND_PULSENUM(uint16_t fre,uint16_t  pulseNum,char dir);
 //定时器2配置 PWM
 void TIM2_Configuration(void);
-
+//TIM2中断函数
+void TIM2_IRQHandler(void);
 #endif
+
