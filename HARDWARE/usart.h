@@ -10,6 +10,7 @@ extern u8 TMP_Flag_End ;
 extern u8 TMP_Flag_Head;
 extern u16 TMP_STA ;
 extern u8 USART_RX_BUF[USART_REC_LEN]; 
+extern int Usart_Commod_Flag; //用于得到电脑需要返回角度的命令
 
 void usartConfigInit(u32 bound);
 void usartParamsInit(void);

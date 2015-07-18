@@ -59,6 +59,7 @@ u8 TMP_Flag_End = 0;
 u8 TMP_Flag_Head = 0;
 u16 TMP_STA = 0 ;
 u8 USART_RX_BUF[USART_REC_LEN];  
+int Usart_Commod_Flag = 0;
 //串口中断函数
 void USART1_IRQHandler(){
 	u8 t;
@@ -110,19 +111,25 @@ void USART1_IRQHandler(){
 						//LED1 = ~LED1;
 					switch(USART_RX_BUF[1]){//判断是什么命令的数值
 						case USART_TB6560_DIR:			StepperMotor.DIR = atoi(StepperMotor.USART_DATA);
-																				SET_TIM2_CH4_Fre_AND_PULSENUM(StepperMotor.FRE,StepperMotor.PULSE_SETPOINT,StepperMotor.DIR);
-																				USART_SendData(USART1,StepperMotor.DIR); 																				
+																				SET_TIM2_CH4_Fre_AND_PULSENUM(StepperMotor.FRE,StepperMotor.PULSE_SETPOINT,StepperMotor.DIR);															
+																				//USART_SendData(USART1,0x99);
 																				break;
 						case USARt_TB6560_FRE:			StepperMotor.FRE = atoi(StepperMotor.USART_DATA);
 																				SET_TIM2_CH4_Fre_AND_PULSENUM(StepperMotor.FRE,StepperMotor.PULSE_SETPOINT,StepperMotor.DIR);
-																				USART_SendData(USART1,StepperMotor.FRE);
+																				//USART_SendData(USART1,0x98);	
 																				break;
 						case USART_TB6560_PULSENUM:	StepperMotor.PULSE_SETPOINT = atoi(StepperMotor.USART_DATA);
 																				SET_TIM2_CH4_Fre_AND_PULSENUM(StepperMotor.FRE,StepperMotor.PULSE_SETPOINT,StepperMotor.DIR);
-																				USART_SendData(USART1,StepperMotor.PULSE_SETPOINT);
+																				//USART_SendData(USART1,0x97);
 																				break;
-						case USART_MINI256Z_AngleSpeed: 	
-																				printf("%f",FreePole.AngleSpeed );
+						case USART_MINI256Z_AngleSpeed: 
+																				Usart_Commod_Flag = 0x08;//可以读自由杆 的角速度
+																				break;
+						case USART_MINI256Z_ActualAngle: 
+																				Usart_Commod_Flag = 0x10;//可以读自由杆 的实时角度
+																				break;
+						case USART_MINI256Z_ActualPosition: 
+																				Usart_Commod_Flag = 0x20;//可以读自由杆 的实时角度
 																				break;
 						default: break;
 					}

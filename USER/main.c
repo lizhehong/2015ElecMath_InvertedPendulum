@@ -29,7 +29,18 @@ int main(){
 	while(1){
 		//printf("FreePole.AngleSpeed =%f \n",FreePole.AngleSpeed );
 		LED2 = ~LED2;
-		//delay_ms(10);
+		while(Usart_Commod_Flag == 0x08){
+			printf("%.3f\n",FreePole.AngleSpeed );
+			delay_ms(3);
+		}
+		while(Usart_Commod_Flag == 0x10){
+			printf("%.3f\n",FreePole.AcutalAngle );
+			delay_ms(3);
+		}
+		while(Usart_Commod_Flag == 0x20){
+			printf("%i\n",TIM_GetCounter(TIM3));
+			delay_ms(3);
+		}
 	}
 }
 

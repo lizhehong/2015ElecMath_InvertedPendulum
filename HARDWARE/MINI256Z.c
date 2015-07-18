@@ -75,6 +75,7 @@ double Get_Electrical_Angle_MINI256Z(void)
 double sum_AcutalAngle = 0.0;
 //实时角速度和
 double AngleDifference = 0.0;
+double tmp = 0.0;
 //自由杆角速度差 累加次数
 int  sum_count = 0;
 void calcAngleSpeed_MINI256(int count,double UnitTime){
@@ -87,7 +88,16 @@ void calcAngleSpeed_MINI256(int count,double UnitTime){
 		sum_AcutalAngle=0;	
 		//计算角度差 正为顺时针 负为逆时针
 		AngleDifference = FreePole.AcutalAngle-FreePole.lastAngle;
-		FreePole.AngleSpeed = AngleDifference/(UnitTime*5.0);
+		tmp =  AngleDifference/(UnitTime*5.0);
+		//FreePole.AngleSpeed = AngleDifference/(UnitTime*5.0);
+		//归一处理
+		if(-2000<= tmp <= 2000){
+			FreePole.AngleSpeed = tmp;
+		}else if(tmp>2000){
+			FreePole.AngleSpeed = 2000;
+		}else if(tmp<-2000){
+			FreePole.AngleSpeed = -2000;
+		}
 		//本次的值 作为下一次计算的上一次角度值
 		FreePole.lastAngle = FreePole.AcutalAngle;
 	}

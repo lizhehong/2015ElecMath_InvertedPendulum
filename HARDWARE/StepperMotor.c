@@ -34,11 +34,9 @@ void getMotorParams4Usart(){
 		if(len < 15){
 			for(t=0;t<len;t++){
 				StepperMotor.USART_DATA[t] = USART_RX_BUF[t+2];//除去命令头和第二位的命令位
-				USART_SendData(USART1,StepperMotor.USART_DATA[t]);
 				}
 				TMP_STA = 0;
 				TMP_Flag_End = 0;
-				USART_SendData(USART1,USART_RX_BUF[1]);
 		}
 		switch(USART_RX_BUF[1]){//判断是什么命令的数值
 			case USART_TB6560_DIR:			StepperMotor.DIR = atoi(StepperMotor.USART_DATA);
