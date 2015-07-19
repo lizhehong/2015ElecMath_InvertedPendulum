@@ -14,3 +14,10 @@
 ..\obj\tim4.o: ..\STM32F10x_FWLib\inc\misc.h
 ..\obj\tim4.o: ..\HARDWARE\MINI256Z.h
 ..\obj\tim4.o: ..\HARDWARE\FreePole.h
+..\obj\tim4.o: ..\HARDWARE\PID.h
+..\obj\tim4.o: D:\MySoftware\keil4\ARM\ARMCC\bin\..\include\stdlib.h
+..\obj\tim4.o: ..\SYS\TIM2_CH4_PWM.h
+..\obj\tim4.o: ..\SYS\Sys.h
+..\obj\tim4.o: ..\HARDWARE\StepperMotor.h
+..\obj\tim4.o: ..\HARDWARE\usart.h
+..\obj\tim4.o: D:\MySoftware\keil4\ARM\ARMCC\bin\..\include\stdio.h

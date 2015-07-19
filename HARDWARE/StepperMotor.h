@@ -8,6 +8,8 @@
 #define USART_TB6560_DIR 0x99 //串口命令中的 方向
 #define USART_TB6560_PULSENUM 0x98 //串口命令中的 脉冲数
 #define USARt_TB6560_FRE 0x97 //串口命令中的 电机工作频率
+#define MAX_Motor_Fre 180 //电机不失步最高频率
+#define MIN_Motor_Fre 130 //电机不失步最低频率
 
 typedef struct{
 	unsigned short int PULSE_SETPOINT ;//期望的脉冲数

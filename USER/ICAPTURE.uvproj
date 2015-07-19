@@ -442,6 +442,11 @@
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\MINI256Z.c</FilePath>
             </File>
+            <File>
+              <FileName>PID.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\PID.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

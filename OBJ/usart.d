@@ -20,3 +20,4 @@
 ..\obj\usart.o: ..\SYS\Sys.h
 ..\obj\usart.o: ..\SYS\TIM2_CH4_PWM.h
 ..\obj\usart.o: ..\HARDWARE\FreePole.h
+..\obj\usart.o: ..\HARDWARE\PID.h

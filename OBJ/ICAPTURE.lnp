@@ -8,6 +8,7 @@
 "..\obj\steppermotor.o"
 "..\obj\freepole.o"
 "..\obj\mini256z.o"
+"..\obj\pid.o"
 "..\obj\delay.o"
 "..\obj\sys.o"
 "..\obj\tim2_ch4_pwm.o"

@@ -5,6 +5,7 @@
 #include "Led.h"
 #include "TIM2_CH4_PWM.h"
 #include "FreePole.h"
+#include "PID.h"
 #define USART_REC_LEN  			200  //串口缓存器的长度
 //串口配置初始化
 void usartConfigInit(u32 bound){
@@ -130,6 +131,9 @@ void USART1_IRQHandler(){
 																				break;
 						case USART_MINI256Z_ActualPosition: 
 																				Usart_Commod_Flag = 0x20;//可以读自由杆 的实时角度
+																				break;
+						case USART_Commod_PID: 
+																				Usart_Commod_Flag = 0x40;//可以读自由杆 的实时角度
 																				break;
 						default: break;
 					}

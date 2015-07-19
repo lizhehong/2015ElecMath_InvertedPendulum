@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include "MINI256Z.h"
 #include "TIM4.h"
+#include "PID.h"
 int main(){
 
 	uint8_t Key;
@@ -31,15 +32,15 @@ int main(){
 		LED2 = ~LED2;
 		while(Usart_Commod_Flag == 0x08){
 			printf("%.3f\n",FreePole.AngleSpeed );
-			delay_ms(3);
+			delay_ms(5);
 		}
 		while(Usart_Commod_Flag == 0x10){
 			printf("%.3f\n",FreePole.AcutalAngle );
-			delay_ms(3);
+			delay_ms(5);
 		}
 		while(Usart_Commod_Flag == 0x20){
 			printf("%i\n",TIM_GetCounter(TIM3));
-			delay_ms(3);
+			delay_ms(5);
 		}
 	}
 }
