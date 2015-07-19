@@ -63,9 +63,14 @@ void MINI256Z_TIM3_Init(void)
 //返回实时角度
 double Get_Electrical_Angle_MINI256Z(void)
 {
-  s32 temp;
-  temp = (s32)(TIM_GetCounter(TIM3)) * (s32)(U32_MAX / (4*ENCODER_PPR)); 
-	return ((temp/65536)*0.00549);
+//  s32 temp;
+//  temp = (s32)(TIM_GetCounter(TIM3)) * (s32)(U32_MAX / (4*ENCODER_PPR)); 
+//	return ((temp/65536)*0.00549);
+	//这里设置成0-360 前面的注释是前面的代码的
+		double temp;
+		temp = TIM_GetCounter(TIM3);
+		temp = temp*0.3515625;
+		return temp;
 }
 //作为计算自由摆的角速度 放于中断函数中
 //count 时间计数  从1开始 UnitTime 作为最小时间单位

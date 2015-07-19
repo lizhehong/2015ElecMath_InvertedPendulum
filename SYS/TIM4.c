@@ -43,28 +43,28 @@ void TIM4_IRQHandler(){
 		timeout++;
 		calcAngleSpeed_MINI256(count,0.0002);
 		if(timeout == 15 && Usart_Commod_Flag == 0x40){
-			pid.Kp =4;
+			pid.Kp =0;
 			pid.Ki = 0;
-			pid.Kd = 0;
+			pid.Kd = 1;
 			pid.sp = 180;
 			pid.lastAngle = pid.Angle;
 			pid.Angle = FreePole.AcutalAngle;
-			pid.velocity = FreePole.AngleSpeed;
+			pid.velocity = pid.Angle - pid.lastAngle;
 			if(abs(pid.Angle - pid.sp ) <= 4){
-					pid.error_p = 0;
+					//pid.error_p = 0;
 			}
 			else{
 					pid.error_p = pid.sp - pid.Angle;
-					pid.error_d = pid.velocity;//我这里直接给角速度
+					pid.error_d = pid.velocity;//我这里直接给角度差
 					pid.error_i = pid.error_i + (pid.error_p*0.003);
-					pid.speed = pid.Kp * pid.error_p 
+					pid.speed = -(pid.Kp * pid.error_p 
 													+ 
 													pid.Ki * pid.error_i 
 													+ 
-													pid.Kp* pid.error_p;
+													pid.Kd* pid.error_d);
 												
 			}
-			printf("pid.speed = %f",pid.speed);
+			//printf("pid.speed = %f",pid.speed);
 			if(pid.speed >=0)
 				SET_TIM2_CH4_Fre_AND_PULSENUM(abs(pid.speed),30,clockwise);
 			else{
