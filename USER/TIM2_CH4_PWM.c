@@ -48,15 +48,19 @@ void TIM2_Configuration(void)
 //则PWM运作 会以 此刻开始执行 抛弃前面设置的执行过程
 void SET_TIM2_CH4_Fre_AND_PULSENUM(uint16_t fre,uint16_t  pulseNum,char dir){
 		//脉冲数设置
-		if(pulseNum>0){//只要期望的脉冲数不为0，就调节
+		if(pulseNum>0){//只要期望的脉冲数0，就调节
 			StepperMotor.PULSE_SETPOINT = pulseNum;
 			StepperMotor.PULSE_ACTUAL = 0;
 		}
 		//频率设置
-		if(fre>0){//只要频率不为0，就调节
+		if(fre>0){//只要频率不为0，就调节		
 			TIM_SetAutoreload(TIM2,1309091/fre);//依据72000 000 /55(分频系数) =  1309091
+			//清空定时器计数值，防止前一时刻的累加效果
+			//TIM_SetCounter(TIM2,0);
 			StepperMotor.FRE = fre;
 			TIM_SetCompare4(TIM2,TIM2->ARR*0.9);//保持党频率发送变化的时候，占空比总是占据90%
+		}else if(fre<=0){
+			TIM_SetCompare4(TIM2,0);//保持党频率发送变化的时候，占空比总是占据90%
 		}
 		//顺时针判断
 		if(dir == anticlockwise){

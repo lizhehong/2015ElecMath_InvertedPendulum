@@ -19,3 +19,6 @@
 ..\obj\pid.o: D:\MySoftware\keil4\ARM\ARMCC\bin\..\include\stdio.h
 ..\obj\pid.o: ..\SYS\Delay.h
 ..\obj\pid.o: ..\HARDWARE\FreePole.h
+..\obj\pid.o: ..\HARDWARE\MINI256Z.h
+..\obj\pid.o: ..\HARDWARE\Led.h
+..\obj\pid.o: D:\MySoftware\keil4\ARM\ARMCC\bin\..\include\stdlib.h

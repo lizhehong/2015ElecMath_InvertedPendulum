@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include "TIM2_CH4_PWM.h"
 #include "StepperMotor.h"
+#include "Led.h"
 //定时器四配置
 void TIM4_Configuration(void) 
 { 
@@ -39,13 +40,14 @@ int count = 0;
 char timeout = 0;
 void TIM4_IRQHandler(){
 	if (TIM_GetITStatus(TIM4, TIM_IT_Update) != RESET){
+		LED2 = ~LED2;
 		count++;
 		timeout++;
 		calcAngleSpeed_MINI256(count,0.0002);
 		if(timeout == 15 && Usart_Commod_Flag == 0x40){
-			pid.Kp =0;
+			pid.Kp =10;
 			pid.Ki = 0;
-			pid.Kd = 1;
+			pid.Kd = 0;
 			pid.sp = 180;
 			pid.lastAngle = pid.Angle;
 			pid.Angle = FreePole.AcutalAngle;

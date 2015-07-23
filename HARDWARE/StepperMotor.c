@@ -9,11 +9,9 @@ MOTORtypedef StepperMotor;
 
 
 void MotorParamsInit(){
-	//这里多出的StepAngle[0] 只是为了设置方便， 实际没有任何作用
-	float StepAngle[5]={0,1.8,0.9,0.45,0.225};
-	StepperMotor.subdivide = 1;
+	StepperMotor.subdivide = 16;//先使用16细分
 	//依据细分读书设置 电机步转角
-	StepperMotor.StepAngle = StepAngle[StepperMotor.subdivide];
+	StepperMotor.StepAngle = 1.8/16;
 	//顺时针
 	StepperMotor.DIR=clockwise; 
 	StepperMotor.FRE = 0;

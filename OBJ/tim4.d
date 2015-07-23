@@ -21,3 +21,4 @@
 ..\obj\tim4.o: ..\HARDWARE\StepperMotor.h
 ..\obj\tim4.o: ..\HARDWARE\usart.h
 ..\obj\tim4.o: D:\MySoftware\keil4\ARM\ARMCC\bin\..\include\stdio.h
+..\obj\tim4.o: ..\HARDWARE\Led.h

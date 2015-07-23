@@ -22,4 +22,5 @@ void MINI256Z_TIM3_Init(void);
 void calcAngleSpeed_MINI256(int count,double UnitTime);
 double getAngleMaxpointFlag_MINI256(double SetpointAngle);
 void TIM3_IRQHandler(void);
+double Get_Electrical_Angle_MINI256Z(void);
 #endif

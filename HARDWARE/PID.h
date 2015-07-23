@@ -19,8 +19,19 @@ typedef struct{
 	double Angle;
 }PIDtypedef;
 
+typedef struct{
+	double Kp;
+	double Ki;
+	double Kd;
+	double last_error;//e[-1]
+	double prev_error;//e[-2]
+	double sum_error;//误差累计
+	double sp;
+}PIDINCREMENTtypedef;
 extern PIDtypedef pid;
-void PID_Control(void);
+extern PIDINCREMENTtypedef pid2;
+void PID_Control_V0_0(void);
+void PID_Control_V1_0(void);
 
 
 #endif
