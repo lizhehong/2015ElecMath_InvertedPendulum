@@ -31,7 +31,8 @@ typedef struct{
 extern PIDtypedef pid;
 extern PIDINCREMENTtypedef pid2;
 void PID_Control_V0_0(void);
+void PID_Control_V0_1(void);
 void PID_Control_V1_0(void);
-
+void PID_Control_V1_1(void);
 
 #endif

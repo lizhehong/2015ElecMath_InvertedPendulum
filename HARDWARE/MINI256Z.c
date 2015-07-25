@@ -5,6 +5,8 @@
 #include "FreePole.h"
 #include "Led.h"
 #include "stdio.h"
+#include "TIM2_CH4_PWM.h"
+#include "StepperMotor.h"
 //MINI256 引脚配置
 void MINI256_GPIO_Config(){
 /* Encoder unit connected to TIM3, 4X mode */    
@@ -72,6 +74,12 @@ double Get_Electrical_Angle_MINI256Z(void)
 		temp = temp*0.3515625;
 		return temp;
 }
+//返回编码器的实时位置
+int Get_Electrical_Position_MINI256Z(void){
+		int temp;
+		temp = TIM_GetCounter(TIM3);
+		return temp;
+}
 //作为计算自由摆的角速度 放于中断函数中
 //count 时间计数  从1开始 UnitTime 作为最小时间单位
 //所以count和UnitTime(秒做单位) 一起就能算出时间
@@ -128,7 +136,17 @@ double getAngleMaxpointFlag_MINI256(double SetpointAngle){
 	}
 	return 0 ;	
 }
-
+//用于环境零点检测 起点必须是手动能控制的第一个点 也就是演示的起点
+//顺时针启动
+void EnviromentTest_ZEROPOINT(){
+	int TestRange = 360/StepperMotor.StepAngle;//算出所需要侦测零点的范围
+	while(TestRange>=1){
+		SET_TIM2_CH4_Fre_AND_PULSENUM(3000,1,clockwise);//顺时针
+		printf("Actual_ZP_Angle = %f In TestRange = %d\n",Get_Electrical_Angle_MINI256Z(),TestRange);			
+		TestRange--;
+		delay_ms(1000);
+	}
+}
 //编码器运动才进入
 void TIM3_IRQHandler()
 {  

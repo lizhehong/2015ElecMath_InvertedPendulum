@@ -18,3 +18,6 @@
 ..\obj\mini256z.o: ..\HARDWARE\Led.h
 ..\obj\mini256z.o: ..\SYS\Sys.h
 ..\obj\mini256z.o: D:\MySoftware\keil4\ARM\ARMCC\bin\..\include\stdio.h
+..\obj\mini256z.o: ..\SYS\TIM2_CH4_PWM.h
+..\obj\mini256z.o: ..\HARDWARE\StepperMotor.h
+..\obj\mini256z.o: ..\HARDWARE\usart.h

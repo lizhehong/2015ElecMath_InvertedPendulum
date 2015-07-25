@@ -15,7 +15,7 @@
 #define U32_MAX    ((u32)4294967295uL) 
 #define SPEED_SAMPLING_TIME  9     // (9+1)*500usec = 10msec 抽样时间 两个脉冲对应点的时间间隔
 
-
+#define USART_Commod_EnviromentZP_Test 0x92
 
 void MINI256_GPIO_Config(void);
 void MINI256Z_TIM3_Init(void);
@@ -23,4 +23,6 @@ void calcAngleSpeed_MINI256(int count,double UnitTime);
 double getAngleMaxpointFlag_MINI256(double SetpointAngle);
 void TIM3_IRQHandler(void);
 double Get_Electrical_Angle_MINI256Z(void);
+int Get_Electrical_Position_MINI256Z(void);
+void EnviromentTest_ZEROPOINT(void);
 #endif

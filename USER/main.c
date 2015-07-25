@@ -28,12 +28,23 @@ int main(){
 	MINI256Z_TIM3_Init();
 	MINI256_GPIO_Config();
 	while(1){
-		while(Usart_Commod_Flag == 0x20){
+		while(Usart_Commod_Flag == 0x10){
 			printf("AcutalAngle = %f \n",Get_Electrical_Angle_MINI256Z());
 			delay_ms(500);
 		}
+		while(Usart_Commod_Flag == 0x20){
+			printf("AcutalAngle = %d \n",Get_Electrical_Position_MINI256Z());
+			delay_ms(500);
+		}
 		while(Usart_Commod_Flag == 0x40){
-				PID_Control_V1_0();
+				PID_Control_V0_1();
+		}
+		while(Usart_Commod_Flag == 0x80){
+				EnviromentTest_ZEROPOINT();
+				Usart_Commod_Flag = 0xff;
+		}while(Usart_Commod_Flag == 0xff){//空闲状态
+				LED1 = ~LED1;
+				delay_ms(500);
 		}
 	}
 }
