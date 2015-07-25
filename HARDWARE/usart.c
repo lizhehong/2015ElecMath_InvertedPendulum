@@ -110,7 +110,6 @@ void USART1_IRQHandler(){
 						//收到了命令 肯定清除标志位啦
 						TMP_STA = 0;
 						TMP_Flag_End = TMP_Flag_Head = 0;
-						//LED1 = ~LED1;
 					switch(USART_RX_BUF[1]){//判断是什么命令的数值
 						case USART_TB6560_DIR:			StepperMotor.DIR = atoi(StepperMotor.USART_DATA);
 																				SET_TIM2_CH4_Fre_AND_PULSENUM(StepperMotor.FRE,StepperMotor.PULSE_SETPOINT,StepperMotor.DIR);															
@@ -137,7 +136,10 @@ void USART1_IRQHandler(){
 																				Usart_Commod_Flag = 0x40;//可以进行PID运算
 																				break;
 						case USART_Commod_EnviromentZP_Test :
-																				Usart_Commod_Flag = 0x80;
+																				Usart_Commod_Flag = 0x80;//可以进行环境零点检测
+																				break;
+						case USART_Commod_STOP:
+																				Usart_Commod_Flag = 0xff;//空闲状态
 																				break;
 						default: break;
 					}

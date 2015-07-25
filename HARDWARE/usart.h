@@ -3,6 +3,7 @@
 #include "stm32f10x.h"
 #include "stdio.h"	
 
+#define USART_Commod_STOP 0x91
 
 #define USART_REC_LEN  			200  
 

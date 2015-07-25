@@ -142,9 +142,10 @@ void EnviromentTest_ZEROPOINT(){
 	int TestRange = 360/StepperMotor.StepAngle;//算出所需要侦测零点的范围
 	while(TestRange>=1){
 		SET_TIM2_CH4_Fre_AND_PULSENUM(3000,1,clockwise);//顺时针
-		printf("Actual_ZP_Angle = %f In TestRange = %d\n",Get_Electrical_Angle_MINI256Z(),TestRange);			
 		TestRange--;
 		delay_ms(1000);
+		delay_ms(1000);
+		printf("Actual_ZP_Angle = %f In TestRange = %d\n",Get_Electrical_Angle_MINI256Z(),TestRange);			
 	}
 }
 //编码器运动才进入

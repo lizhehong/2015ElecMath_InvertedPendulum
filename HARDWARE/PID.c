@@ -33,7 +33,8 @@ void PID_Control_V0_0(){
 										pid.Ki * pid.error_i 
 										+ 
 										pid.Kd* pid.error_d);
-			printf("%f\n",pid.speed);
+			//不要用阻塞的printf影响实时控制
+			//printf("%f\n",pid.speed);
 			if(pid.speed >=0){
 				pid.speed = abs(pid.speed);
 				SET_TIM2_CH4_Fre_AND_PULSENUM(pid.speed,0.003/pid.speed,clockwise);
@@ -67,7 +68,8 @@ void PID_Control_V0_1(){
 								pid.Ki * pid.error_i 
 								+ 
 								pid.Kd* pid.error_d;
-		printf("PulseName = %d fre = %d PID = %f\n",abs(pid.speed *3.125),abs((pid.speed*3.125*1000)/T),pid.speed );
+		//不要用阻塞的printf影响实时控制
+		//printf("PulseName = %d fre = %d PID = %f\n",abs(pid.speed *3.125),abs((pid.speed*3.125*1000)/T),pid.speed );
 		if(pid.speed >=0){
 			//SET_TIM2_CH4_Fre_AND_PULSENUM(abs((pid.speed*3.125*1000)/T),abs(pid.speed *3.125),clockwise);
 			SET_TIM2_CH4_Fre_AND_PULSENUM(2000,abs(pid.speed *3.125),clockwise);
@@ -76,6 +78,46 @@ void PID_Control_V0_1(){
 				SET_TIM2_CH4_Fre_AND_PULSENUM(2000,abs(pid.speed *3.125),anticlockwise);
 		}
 		delay_ms(T);//采样时间
+}
+//1 0 0.05平衡10s
+//1 0 0.1 平衡10s
+//1 0 0.5 平衡10s
+//1 0 1		平衡10s
+//1 0 1.5 平衡6s
+//1 0 2   平衡3s
+void PID_Control_V0_2(){
+		//p i d 同符号
+		int T = 3;//ms
+		pid.Kp =1;//
+		pid.Ki = 0;
+		pid.Kd =1.5;//应该和pid.Kp一个数据级的
+	                   //先调d，p和i=0，然后不停的加大参数
+										//直到松手杆会抖动，然后就取一半的参数
+		pid.sp = 512;
+		pid.lastAngle = pid.Angle;
+		pid.Angle = Get_Electrical_Position_MINI256Z();//使用位置值
+		//最高点的正负60度方位内才PID运行
+		if(pid.Angle<341 || pid.Angle>683){
+			TIM_SetCompare4(TIM2,0);//防止电机因超出角度 还在运行
+			pid.speed = 0;//倒下去不做PID 所以清空
+			return;
+		}
+		pid.velocity = pid.Angle - pid.lastAngle;//e(k)-e(k-1)
+		//注意 是实时减去期望哦 其他版本有写错的记得改正 没有改正 就是可能导致d为负数的原因了
+		pid.error_p = pid.Angle - pid.sp ;//e(K) 比例向 
+		pid.error_i += (pid.error_p*T)/1000;//积分 
+		pid.error_d = (pid.velocity*1000)/T;//微分
+	
+		pid.speed = (pid.Kp * pid.error_p) 
+								+ 
+								(pid.Ki * pid.error_i) 
+								+ 
+								(pid.Kd* pid.error_d);
+		if(pid.speed <= 0){
+			SET_TIM2_CH4_Fre_AND_PULSENUM(2000,abs(pid.speed *3.125),clockwise);
+			}else{
+				SET_TIM2_CH4_Fre_AND_PULSENUM(2000,abs(pid.speed *3.125),anticlockwise);
+		}
 }
 //PIDINCREMENTtypedef pid2; 使用这个结构 增量型pid的结构
 //电机的可控频率 应该在负载确定下 测试出来 稳定的工作频率范围(定下是 编码器部分是否稳定和工作时是够稳定)
@@ -127,13 +169,14 @@ void PID_Control_V1_0(){
 		//pid2.sum_error = pid2.sum_error/0.1125;
 		SET_TIM2_CH4_Fre_AND_PULSENUM(abs(pid2.sum_error)/0.002,abs(pid2.sum_error),clockwise);
 		//printf("pid2.sum_error=%f ActualAngle=%f \n",pid2.sum_error,ActualAngle);
-			printf("abs(pid2.sum_error) = %.0f\n",pid2.sum_error);
+		//printf("abs(pid2.sum_error) = %.0f\n",pid2.sum_error);
 	}
 	else{//需要修正的角度是负的，当然我需要逆时针转
 		//pid2.sum_error = pid2.sum_error/0.1125;
 		SET_TIM2_CH4_Fre_AND_PULSENUM(abs(pid2.sum_error)/0.002,abs(pid2.sum_error),anticlockwise);
+		//不要用阻塞的printf影响实时控制
 		//printf("pid2.sum_error=%f ActualAngle=%f \n",pid2.sum_error,ActualAngle);
-			printf("abs(pid2.sum_error) = %.0f\n",pid2.sum_error);
+		//printf("abs(pid2.sum_error) = %.0f\n",pid2.sum_error);
 	}
 	delay_ms(2);
 }
@@ -176,13 +219,16 @@ void PID_Control_V1_1(){
 	//1.8/16 = 0.1125 步转矩
 	//360/1024 = 0.3515625 编码器度数
 	//所以 每一个位置值 对应的脉冲数应该是 3.125
-	printf("PID Value=%f Fre = %d \n",pid2.sum_error,abs((pid2.sum_error*3.125*1000)/Delay_Time));
+	//不要用阻塞的printf影响实时控制
+	//printf("PID Value=%f Fre = %d \n",pid2.sum_error,abs((pid2.sum_error*3.125*1000)/Delay_Time));
 	if(pid2.sum_error>=0){	
 		SET_TIM2_CH4_Fre_AND_PULSENUM(abs((pid2.sum_error*3.125*1000)/Delay_Time),abs(pid2.sum_error*3),clockwise);
+		////不要用阻塞的printf影响实时控制
 		//printf("abs(pid2.sum_error/StepperMotor.StepAngle/0.02) = %d\n",abs(pid2.sum_error/StepperMotor.StepAngle/0.02));
 	}
 	else{
 		SET_TIM2_CH4_Fre_AND_PULSENUM(abs((pid2.sum_error*3.125*1000)/Delay_Time),abs(pid2.sum_error*3),anticlockwise);
+		//不要用阻塞的printf影响实时控制
 		//printf("abs(pid2.sum_error/StepperMotor.StepAngle/0.02) = %d\n",abs(pid2.sum_error/StepperMotor.StepAngle/0.02));
 	}
 	delay_ms(Delay_Time);

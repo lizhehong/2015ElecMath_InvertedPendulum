@@ -24,7 +24,6 @@ void getMotorParams4Usart(){
 	u8 t;
 	u8 len;
 	if(TMP_Flag_End ==3 && TMP_Flag_Head == 1){
-		LED1 = 1;
 		//USART_SendData(USART1,0x99);
 		len = TMP_STA-2; //去掉0x90 数据头和命令头 剩下的内容的长度
 		//printf("len = %i \n",len);

@@ -97,10 +97,8 @@ void TIM2_IRQHandler()
 		if(StepperMotor.PULSE_ACTUAL>=StepperMotor.PULSE_SETPOINT){//实际的脉冲和期望的脉冲数量一致
 			//关闭PWM，其实也就是，持续低电平就行了
 			TIM_SetCompare4(TIM2,0);
-			LED1 = 0;
 		}else{
 			StepperMotor.PULSE_ACTUAL++;//代表实际的脉冲数
-			LED1 = 1;
 		}
 		TIM_ClearITPendingBit(TIM2, TIM_IT_Update);		
 	}
