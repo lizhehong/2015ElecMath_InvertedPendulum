@@ -3,6 +3,7 @@
 #include "Delay.h"
 #include "FreePole.h"
 #include "Led.h"
+#include <stdlib.h>
 //TIM2配置
 void TIM2_Configuration(void) 
 { 
@@ -35,7 +36,6 @@ void TIM2_Configuration(void)
 	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;            
 	NVIC_Init(&NVIC_InitStructure);
 	
-	
 	TIM_ClearFlag(TIM2, TIM_FLAG_Update); 
 
 	TIM_ITConfig(TIM2, TIM_IT_Update, ENABLE); 
@@ -54,7 +54,7 @@ void SET_TIM2_CH4_Fre_AND_PULSENUM(uint16_t fre,uint16_t  pulseNum,char dir){
 		}
 		//频率设置
 		if(fre>0){//只要频率不为0，就调节		
-			TIM_SetAutoreload(TIM2,1309091/fre);//依据72000 000 /55(分频系数) =  1309091
+			TIM_SetAutoreload(TIM2,abs(1309091/fre));//依据72000 000 /55(分频系数) =  1309091
 			//清空定时器计数值，防止前一时刻的累加效果
 			//TIM_SetCounter(TIM2,0);
 			StepperMotor.FRE = fre;

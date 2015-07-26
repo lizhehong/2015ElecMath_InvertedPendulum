@@ -79,6 +79,7 @@ void PID_Control_V0_1(){
 		}
 		delay_ms(T);//采样时间
 }
+//此版本开始 用了定时器4 3ms
 //1 0 0.05平衡10s
 //1 0 0.1 平衡10s
 //1 0 0.5 平衡10s
@@ -90,7 +91,7 @@ void PID_Control_V0_2(){
 		int T = 3;//ms
 		pid.Kp =1;//
 		pid.Ki = 0;
-		pid.Kd =1.5;//应该和pid.Kp一个数据级的
+		pid.Kd =1;//应该和pid.Kp一个数据级的
 	                   //先调d，p和i=0，然后不停的加大参数
 										//直到松手杆会抖动，然后就取一半的参数
 		pid.sp = 512;
@@ -114,11 +115,57 @@ void PID_Control_V0_2(){
 								+ 
 								(pid.Kd* pid.error_d);
 		if(pid.speed <= 0){
-			SET_TIM2_CH4_Fre_AND_PULSENUM(2000,abs(pid.speed *3.125),clockwise);
+			SET_TIM2_CH4_Fre_AND_PULSENUM(2500,abs(pid.speed *3.125),clockwise);
 			}else{
-				SET_TIM2_CH4_Fre_AND_PULSENUM(2000,abs(pid.speed *3.125),anticlockwise);
+				SET_TIM2_CH4_Fre_AND_PULSENUM(2500,abs(pid.speed *3.125),anticlockwise);
 		}
 }
+//在版本2中再加入 变频控制,为了使用电机频率范围内 能使用的调节角度 所以只能用
+//升高 PID采样时间了
+//但是背离了pid控制 所以增加一版本
+//这个版本不能用哦
+//1 0 1 	
+//1 0 0.5 
+//1 0 0.1
+void PID_Control_V0_3(){
+		//p i d 同符号
+		int T = 3;//ms
+		pid.Kp =0.8;//
+		pid.Ki = 0;
+		pid.Kd =0.5;//应该和pid.Kp一个数据级的
+	                   //先调d，p和i=0，然后不停的加大参数
+										//直到松手杆会抖动，然后就取一半的参数
+		pid.sp = 512;
+		pid.lastAngle = pid.Angle;
+		pid.Angle = Get_Electrical_Position_MINI256Z();//使用位置值
+		//最高点的正负15度方位内才PID运行
+		if(pid.Angle<469 || pid.Angle>555){
+			TIM_SetCompare4(TIM2,0);//防止电机因超出角度 还在运行
+			pid.speed = 0;//倒下去不做PID 所以清空
+			pid.error_p = 0;
+			pid.error_i = 0;
+			pid.error_d = 0;
+			return;
+		}
+		pid.velocity = pid.Angle - pid.lastAngle;//e(k)-e(k-1)
+		//注意 是实时减去期望哦 其他版本有写错的记得改正 没有改正 就是可能导致d为负数的原因了
+		pid.error_p = pid.Angle - pid.sp ;//e(K) 比例向 
+		pid.error_i += (pid.error_p*T)/1000;//积分 
+		pid.error_d = (pid.velocity*1000)/T;//微分
+	
+		pid.speed = (pid.Kp * pid.error_p) 
+								+ 
+								(pid.Ki * pid.error_i) 
+								+ 
+								(pid.Kd* pid.error_d);
+		printf("fre=%i PulseNum=%i\n",abs(pid.speed *3.125*1000/T),abs(pid.speed *3.125));
+		if(pid.speed <= 0){
+			SET_TIM2_CH4_Fre_AND_PULSENUM(abs(pid.speed *3.125*1000/T),abs(pid.speed *3.125),clockwise);
+			}else{
+				SET_TIM2_CH4_Fre_AND_PULSENUM(abs(pid.speed *3.125*1000/T),abs(pid.speed *3.125),anticlockwise);
+		}
+}
+
 //PIDINCREMENTtypedef pid2; 使用这个结构 增量型pid的结构
 //电机的可控频率 应该在负载确定下 测试出来 稳定的工作频率范围(定下是 编码器部分是否稳定和工作时是够稳定)
 //然后依据所要的角度 算出在一个pid运行周期下 需要的频率(确定与采样周期内顺利完成)

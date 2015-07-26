@@ -47,7 +47,7 @@ int main(){
 			LED1 = 0;
 			if((TIM4_TASK & 0x01) == 0x01){
 				TIM4_TASK = TIM4_TASK&0xfe;
-				PID_Control_V0_2();
+				PID_Control_V0_3();
 			}
 		}
 	}
