@@ -1,0 +1,16 @@
+90 99 31 ff ff ff 		正转
+90 99 30 ff ff ff		逆转
+90 89 ff ff ff		停机
+90 97 30 30 39 30 ff ff ff	设置频率
+90 94 ff ff ff			实时编码器位置值
+90 92 ff ff ff			过程零点检测
+90 91 ff ff ff			单片机空闲
+
+## 记得必须设置PID三个参数后在发送"PID实现" 不然"PID实现"不会启动的
+80 fe ff ff ff			PID实现
+80 fd 30 2E 30 30 ff ff ff			设置P
+80 fc 30 2E 30 30 ff ff ff			设置i
+80 fb 30 2E 30 30 ff ff ff			设置d
+
+## 关于stm32 本身
+91 fe ff ff ff			软复位

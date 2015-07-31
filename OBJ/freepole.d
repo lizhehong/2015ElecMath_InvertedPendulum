@@ -1,2 +1,16 @@
 ..\obj\freepole.o: ..\HARDWARE\FreePole.c
 ..\obj\freepole.o: ..\HARDWARE\FreePole.h
+..\obj\freepole.o: ..\USER\stm32f10x.h
+..\obj\freepole.o: ..\CORE\core_cm3.h
+..\obj\freepole.o: D:\MySoftware\keil4\ARM\ARMCC\bin\..\include\stdint.h
+..\obj\freepole.o: ..\USER\system_stm32f10x.h
+..\obj\freepole.o: ..\USER\stm32f10x_conf.h
+..\obj\freepole.o: ..\STM32F10x_FWLib\inc\stm32f10x_dbgmcu.h
+..\obj\freepole.o: ..\USER\stm32f10x.h
+..\obj\freepole.o: ..\STM32F10x_FWLib\inc\stm32f10x_dma.h
+..\obj\freepole.o: ..\STM32F10x_FWLib\inc\stm32f10x_exti.h
+..\obj\freepole.o: ..\STM32F10x_FWLib\inc\stm32f10x_gpio.h
+..\obj\freepole.o: ..\STM32F10x_FWLib\inc\stm32f10x_rcc.h
+..\obj\freepole.o: ..\STM32F10x_FWLib\inc\stm32f10x_tim.h
+..\obj\freepole.o: ..\STM32F10x_FWLib\inc\stm32f10x_usart.h
+..\obj\freepole.o: ..\STM32F10x_FWLib\inc\misc.h

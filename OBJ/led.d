@@ -8,6 +8,8 @@
 ..\obj\led.o: ..\USER\stm32f10x_conf.h
 ..\obj\led.o: ..\STM32F10x_FWLib\inc\stm32f10x_dbgmcu.h
 ..\obj\led.o: ..\USER\stm32f10x.h
+..\obj\led.o: ..\STM32F10x_FWLib\inc\stm32f10x_dma.h
+..\obj\led.o: ..\STM32F10x_FWLib\inc\stm32f10x_exti.h
 ..\obj\led.o: ..\STM32F10x_FWLib\inc\stm32f10x_gpio.h
 ..\obj\led.o: ..\STM32F10x_FWLib\inc\stm32f10x_rcc.h
 ..\obj\led.o: ..\STM32F10x_FWLib\inc\stm32f10x_tim.h

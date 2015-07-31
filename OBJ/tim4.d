@@ -7,6 +7,8 @@
 ..\obj\tim4.o: ..\USER\stm32f10x_conf.h
 ..\obj\tim4.o: ..\STM32F10x_FWLib\inc\stm32f10x_dbgmcu.h
 ..\obj\tim4.o: ..\USER\stm32f10x.h
+..\obj\tim4.o: ..\STM32F10x_FWLib\inc\stm32f10x_dma.h
+..\obj\tim4.o: ..\STM32F10x_FWLib\inc\stm32f10x_exti.h
 ..\obj\tim4.o: ..\STM32F10x_FWLib\inc\stm32f10x_gpio.h
 ..\obj\tim4.o: ..\STM32F10x_FWLib\inc\stm32f10x_rcc.h
 ..\obj\tim4.o: ..\STM32F10x_FWLib\inc\stm32f10x_tim.h
@@ -22,3 +24,4 @@
 ..\obj\tim4.o: ..\HARDWARE\usart.h
 ..\obj\tim4.o: D:\MySoftware\keil4\ARM\ARMCC\bin\..\include\stdio.h
 ..\obj\tim4.o: ..\HARDWARE\Led.h
+..\obj\tim4.o: ..\HARDWARE\MYDMA.h

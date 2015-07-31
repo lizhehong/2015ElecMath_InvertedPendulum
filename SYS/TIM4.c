@@ -7,7 +7,7 @@
 #include "TIM2_CH4_PWM.h"
 #include "StepperMotor.h"
 #include "Led.h"
-
+#include "MYDMA.h"
 int  TIM4_TASK = 0;
 
 
@@ -28,8 +28,8 @@ void TIM4_Configuration(void)
 	
 	
 	NVIC_InitStructure.NVIC_IRQChannel = TIM4_IRQn;    
-	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 3;   //抢占优先级3
-	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;     //优先级
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;   //抢占优先级1
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;     //优先级
 	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;            
 	NVIC_Init(&NVIC_InitStructure);  
 	
@@ -45,10 +45,13 @@ char timeout = 0;
 void TIM4_IRQHandler(){
 	if (TIM_GetITStatus(TIM4, TIM_IT_Update) != RESET){
 		count++;
-		if(count%3){//PID 控制时间到了 3ms
+		if(count%3 == 0){//PID 控制时间到了 3ms
 			TIM4_TASK = 0x01;
 		}
-		if(count % 500){
+		if(count % 10 == 0){
+			DMA_Data_Listen();
+		}
+		if(count % 1000 == 0){
 			LED1 = ~LED1;
 		}
 		if(count == 60000){

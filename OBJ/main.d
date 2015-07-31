@@ -7,6 +7,8 @@
 ..\obj\main.o: ..\USER\stm32f10x_conf.h
 ..\obj\main.o: ..\STM32F10x_FWLib\inc\stm32f10x_dbgmcu.h
 ..\obj\main.o: ..\USER\stm32f10x.h
+..\obj\main.o: ..\STM32F10x_FWLib\inc\stm32f10x_dma.h
+..\obj\main.o: ..\STM32F10x_FWLib\inc\stm32f10x_exti.h
 ..\obj\main.o: ..\STM32F10x_FWLib\inc\stm32f10x_gpio.h
 ..\obj\main.o: ..\STM32F10x_FWLib\inc\stm32f10x_rcc.h
 ..\obj\main.o: ..\STM32F10x_FWLib\inc\stm32f10x_tim.h
@@ -25,3 +27,4 @@
 ..\obj\main.o: ..\HARDWARE\MINI256Z.h
 ..\obj\main.o: ..\SYS\TIM4.h
 ..\obj\main.o: ..\HARDWARE\PID.h
+..\obj\main.o: ..\HARDWARE\MYDMA.h

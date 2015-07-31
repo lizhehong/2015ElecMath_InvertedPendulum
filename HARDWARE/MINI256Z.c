@@ -7,26 +7,53 @@
 #include "stdio.h"
 #include "TIM2_CH4_PWM.h"
 #include "StepperMotor.h"
+#include "MYDMA.h"
+#include "string.h"
 //MINI256 引脚配置
 void MINI256_GPIO_Config(){
 /* Encoder unit connected to TIM3, 4X mode */    
   GPIO_InitTypeDef GPIO_InitStructure;
+
 	  /* Enable GPIOA, clock */
-  RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
+  RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA | RCC_APB2Periph_AFIO, ENABLE);
 	
-	 GPIO_StructInit(&GPIO_InitStructure);
   /* Configure PA.06,07 as encoder input */
+	//PA5 Z相 PA6 A相 PA7 B相
   GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_7;
   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
   GPIO_Init(GPIOA, &GPIO_InitStructure);
+	
+	GPIO_InitStructure.GPIO_Pin  = GPIO_Pin_5;//PA.5
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU; //上拉输入
+ 	GPIO_Init(GPIOA, &GPIO_InitStructure);
 
+}
+//MINI256Z 外部中断配置
+void MINI256_EXIT_Config(){
+	EXTI_InitTypeDef EXTI_InitStructure;
+	NVIC_InitTypeDef NVIC_InitStructure;
+	
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO,ENABLE);	//使能复用功能时钟
+	//PA5 中断线以及中断初始化配置 下降沿触发
+	GPIO_EXTILineConfig(GPIO_PortSourceGPIOA,GPIO_PinSource5);
+	
+	EXTI_InitStructure.EXTI_Line=EXTI_Line5;	//编码器Z相
+	EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;	
+	EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Falling;
+	EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+	EXTI_Init(&EXTI_InitStructure);	 	//初始化参数
+
+	NVIC_InitStructure.NVIC_IRQChannel = EXTI9_5_IRQn;			
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x02;	 
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x00;					 
+	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;								
+	NVIC_Init(&NVIC_InitStructure);
 }
 //MINI256 定时器3配置
 void MINI256Z_TIM3_Init(void)
 {
 		TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;
 		TIM_ICInitTypeDef TIM_ICInitStructure;
-
 		/* TIM3 clock source enable */
 		RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3, ENABLE);
 
@@ -52,10 +79,7 @@ void MINI256Z_TIM3_Init(void)
 																							//0110 采集频率Fsampling = Fdts/4 ,N=6
 																							//在规定频率下 采集6次 如果都是指定电平 就算有效电平
 		TIM_ICInit(TIM3, &TIM_ICInitStructure);
-		// Clear all pending interrupts
-		TIM_ClearFlag(TIM3, TIM_FLAG_Update);//清除TIMx的待处理标志位
 		
-		TIM_ITConfig(TIM3, TIM_IT_Update, ENABLE);//使能指定TIM中断
 		//Reset counter
 		TIM3->CNT = COUNTER_RESET;
 		
@@ -65,17 +89,13 @@ void MINI256Z_TIM3_Init(void)
 //返回实时角度
 double Get_Electrical_Angle_MINI256Z(void)
 {
-//  s32 temp;
-//  temp = (s32)(TIM_GetCounter(TIM3)) * (s32)(U32_MAX / (4*ENCODER_PPR)); 
-//	return ((temp/65536)*0.00549);
-	//这里设置成0-360 前面的注释是前面的代码的
 		double temp;
 		temp = TIM_GetCounter(TIM3);
 		temp = temp*0.3515625;
 		return temp;
 }
 //返回编码器的实时位置
-int Get_Electrical_Position_MINI256Z(void){
+u16 Get_Electrical_Position_MINI256Z(void){
 		int temp;
 		temp = TIM_GetCounter(TIM3);
 		return temp;
@@ -96,11 +116,11 @@ void calcAngleSpeed_MINI256(int count,double UnitTime){
 	//count == 0 不要进入,5个计数 进入
 	if(count%5 == 0){//每5个计数器时间
 		//5次实时角度平均值 滤波 作为 自由杆的真正实时角度
-		FreePole.AcutalAngle = sum_AcutalAngle/5.0;
+		FreePole.AcutalPosition = sum_AcutalAngle/5.0;
 		//清除累加和 待下次累加做准备 否则 下次累加后会叠加上一次的数据
 		sum_AcutalAngle=0;	
 		//计算角度差 正为顺时针 负为逆时针
-		AngleDifference = FreePole.AcutalAngle-FreePole.lastAngle;
+		AngleDifference = FreePole.AcutalPosition-FreePole.lastPosition;
 		tmp =  AngleDifference/(UnitTime*5.0);
 		//FreePole.AngleSpeed = AngleDifference/(UnitTime*5.0);
 		//归一处理
@@ -112,7 +132,7 @@ void calcAngleSpeed_MINI256(int count,double UnitTime){
 			FreePole.AngleSpeed = -2000;
 		}
 		//本次的值 作为下一次计算的上一次角度值
-		FreePole.lastAngle = FreePole.AcutalAngle;
+		FreePole.lastPosition = FreePole.AcutalPosition;
 	}
 }
 //如果经过期望的角度 返回 时刻的角度
@@ -124,33 +144,24 @@ double getAngleMaxpointFlag_MINI256(double SetpointAngle){
 	//因为角速度计算也需要时间嘛
 	delay_ms(2);
 	//填充自由摆期望的
-	FreePole.SetpointAngle =  SetpointAngle;
+	FreePole.SetpointPosition =  SetpointAngle;
 	//得到此时刻的角速度
 	tmp_AngleSpeed = FreePole.AngleSpeed;
 	//得到此时刻的角度
-	tmp_AcutalAngle = FreePole.AcutalAngle;
-	if(0<tmp_AngleSpeed<1 && abs(tmp_AcutalAngle)>FreePole.SetpointAngle-0.1 && abs(tmp_AcutalAngle)<FreePole.SetpointAngle+1){
+	tmp_AcutalAngle = FreePole.AcutalPosition;
+	if(0<tmp_AngleSpeed<1 && abs(tmp_AcutalAngle)>FreePole.SetpointPosition-0.1 && abs(tmp_AcutalAngle)<FreePole.SetpointPosition+1){
 		//可能有两次 ，也有可能一次，所以一有就返回位置
 		FreePole.AngleMaxpoint = tmp_AcutalAngle;
 		return tmp_AcutalAngle;
 	}
 	return 0 ;	
 }
-//用于环境零点检测 起点必须是手动能控制的第一个点 也就是演示的起点
-//顺时针启动
-void EnviromentTest_ZEROPOINT(){
-	int TestRange = 360/StepperMotor.StepAngle;//算出所需要侦测零点的范围
-	while(TestRange>=1){
-		SET_TIM2_CH4_Fre_AND_PULSENUM(3000,1,clockwise);//顺时针
-		TestRange--;
-		delay_ms(1000);
-		delay_ms(1000);
-		printf("Actual_ZP_Angle = %f In TestRange = %d\n",Get_Electrical_Angle_MINI256Z(),TestRange);			
+//Z 相中断
+uint16_t ENCODER_Z_Val = 0;//Z相调零 需要实地测试 得出来值 然后 就可以用来校正
+void EXTI9_5_IRQHandler(){
+	if (EXTI_GetITStatus(EXTI_Line5) != RESET){		
+			USART_DMA1_Send("ZP=",Get_Electrical_Position_MINI256Z());
+		EXTI_ClearITPendingBit(EXTI_Line5);  //清除 Z相 中断标志位
 	}
 }
-//编码器运动才进入
-void TIM3_IRQHandler()
-{  
-	/* Clear the interrupt pending flag */
-	TIM_ClearFlag(TIM3, TIM_FLAG_Update); 		
-}
+

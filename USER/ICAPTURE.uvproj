@@ -447,6 +447,11 @@
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\PID.c</FilePath>
             </File>
+            <File>
+              <FileName>MYDMA.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\MYDMA.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -463,14 +468,14 @@
               <FilePath>..\SYS\Sys.c</FilePath>
             </File>
             <File>
-              <FileName>TIM2_CH4_PWM.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\TIM2_CH4_PWM.c</FilePath>
-            </File>
-            <File>
               <FileName>TIM4.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\SYS\TIM4.c</FilePath>
+            </File>
+            <File>
+              <FileName>TIM2_CH4_PWM.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\SYS\TIM2_CH4_PWM.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -516,6 +521,36 @@
               <FileName>stm32f10x_usart.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\STM32F10x_FWLib\src\stm32f10x_usart.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_exti.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\STM32F10x_FWLib\src\stm32f10x_exti.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_dma.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\STM32F10x_FWLib\src\stm32f10x_dma.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Document</GroupName>
+          <Files>
+            <File>
+              <FileName>Readme.txt</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Document\Readme.txt</FilePath>
+            </File>
+            <File>
+              <FileName>USART_Commod.txt</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Document\USART_Commod.txt</FilePath>
+            </File>
+            <File>
+              <FileName>PhysicalConnection.txt</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Document\PhysicalConnection.txt</FilePath>
             </File>
           </Files>
         </Group>

@@ -1,0 +1,18 @@
+TB6560
+PUL+ and DIR+ To +5V 
+PUL- TO GPIOB_PIN_11
+DIR- TO GPIOB_PIN_10
+
+StepperMotor	To		TB6560		
+ºÚ ÂÌ ºì À¶ 			A+ A- B+ B-
+
+MINI256Z		To		STM32
+1						GND
+2						3.3V
+3						AÏà	PA6
+4						BÏà	PA7
+5						ZÏà PA5
+6						NC
+
+
+

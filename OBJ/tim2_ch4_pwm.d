@@ -1,4 +1,4 @@
-..\obj\tim2_ch4_pwm.o: TIM2_CH4_PWM.c
+..\obj\tim2_ch4_pwm.o: ..\SYS\TIM2_CH4_PWM.c
 ..\obj\tim2_ch4_pwm.o: ..\SYS\TIM2_CH4_PWM.h
 ..\obj\tim2_ch4_pwm.o: ..\USER\stm32f10x.h
 ..\obj\tim2_ch4_pwm.o: ..\CORE\core_cm3.h
@@ -7,6 +7,8 @@
 ..\obj\tim2_ch4_pwm.o: ..\USER\stm32f10x_conf.h
 ..\obj\tim2_ch4_pwm.o: ..\STM32F10x_FWLib\inc\stm32f10x_dbgmcu.h
 ..\obj\tim2_ch4_pwm.o: ..\USER\stm32f10x.h
+..\obj\tim2_ch4_pwm.o: ..\STM32F10x_FWLib\inc\stm32f10x_dma.h
+..\obj\tim2_ch4_pwm.o: ..\STM32F10x_FWLib\inc\stm32f10x_exti.h
 ..\obj\tim2_ch4_pwm.o: ..\STM32F10x_FWLib\inc\stm32f10x_gpio.h
 ..\obj\tim2_ch4_pwm.o: ..\STM32F10x_FWLib\inc\stm32f10x_rcc.h
 ..\obj\tim2_ch4_pwm.o: ..\STM32F10x_FWLib\inc\stm32f10x_tim.h

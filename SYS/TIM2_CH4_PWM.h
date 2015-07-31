@@ -4,11 +4,10 @@
 #include "Sys.h"
 
 #define USART_MINI256Z_AngleSpeed 0x96
-#define USART_MINI256Z_ActualAngle 0x95
 #define USART_MINI256Z_ActualPosition 0x94
 
 //定时器2PWM设置频率和脉冲数
-void SET_TIM2_CH4_Fre_AND_PULSENUM(uint16_t fre,uint16_t  pulseNum,char dir);
+void SET_TIM2_CH4_Fre(uint16_t fre,char dir);
 //定时器2配置 PWM
 void TIM2_Configuration(void);
 //TIM2中断函数

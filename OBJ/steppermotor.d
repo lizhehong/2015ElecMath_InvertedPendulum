@@ -7,6 +7,8 @@
 ..\obj\steppermotor.o: ..\USER\stm32f10x_conf.h
 ..\obj\steppermotor.o: ..\STM32F10x_FWLib\inc\stm32f10x_dbgmcu.h
 ..\obj\steppermotor.o: ..\USER\stm32f10x.h
+..\obj\steppermotor.o: ..\STM32F10x_FWLib\inc\stm32f10x_dma.h
+..\obj\steppermotor.o: ..\STM32F10x_FWLib\inc\stm32f10x_exti.h
 ..\obj\steppermotor.o: ..\STM32F10x_FWLib\inc\stm32f10x_gpio.h
 ..\obj\steppermotor.o: ..\STM32F10x_FWLib\inc\stm32f10x_rcc.h
 ..\obj\steppermotor.o: ..\STM32F10x_FWLib\inc\stm32f10x_tim.h

@@ -6,6 +6,8 @@
 ..\obj\system_stm32f10x.o: stm32f10x_conf.h
 ..\obj\system_stm32f10x.o: ..\STM32F10x_FWLib\inc\stm32f10x_dbgmcu.h
 ..\obj\system_stm32f10x.o: ..\USER\stm32f10x.h
+..\obj\system_stm32f10x.o: ..\STM32F10x_FWLib\inc\stm32f10x_dma.h
+..\obj\system_stm32f10x.o: ..\STM32F10x_FWLib\inc\stm32f10x_exti.h
 ..\obj\system_stm32f10x.o: ..\STM32F10x_FWLib\inc\stm32f10x_gpio.h
 ..\obj\system_stm32f10x.o: ..\STM32F10x_FWLib\inc\stm32f10x_rcc.h
 ..\obj\system_stm32f10x.o: ..\STM32F10x_FWLib\inc\stm32f10x_tim.h
