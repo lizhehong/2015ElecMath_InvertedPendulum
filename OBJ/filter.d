@@ -1,0 +1,16 @@
+..\obj\filter.o: ..\HARDWARE\Filter.c
+..\obj\filter.o: ..\HARDWARE\Filter.h
+..\obj\filter.o: ..\USER\stm32f10x.h
+..\obj\filter.o: ..\CORE\core_cm3.h
+..\obj\filter.o: D:\MySoftware\keil4\ARM\ARMCC\bin\..\include\stdint.h
+..\obj\filter.o: ..\USER\system_stm32f10x.h
+..\obj\filter.o: ..\USER\stm32f10x_conf.h
+..\obj\filter.o: ..\STM32F10x_FWLib\inc\stm32f10x_dbgmcu.h
+..\obj\filter.o: ..\USER\stm32f10x.h
+..\obj\filter.o: ..\STM32F10x_FWLib\inc\stm32f10x_dma.h
+..\obj\filter.o: ..\STM32F10x_FWLib\inc\stm32f10x_exti.h
+..\obj\filter.o: ..\STM32F10x_FWLib\inc\stm32f10x_gpio.h
+..\obj\filter.o: ..\STM32F10x_FWLib\inc\stm32f10x_rcc.h
+..\obj\filter.o: ..\STM32F10x_FWLib\inc\stm32f10x_tim.h
+..\obj\filter.o: ..\STM32F10x_FWLib\inc\stm32f10x_usart.h
+..\obj\filter.o: ..\STM32F10x_FWLib\inc\misc.h

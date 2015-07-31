@@ -1,6 +1,5 @@
 ..\obj\pid.o: ..\HARDWARE\PID.c
 ..\obj\pid.o: ..\HARDWARE\PID.h
-..\obj\pid.o: ..\SYS\TIM2_CH4_PWM.h
 ..\obj\pid.o: ..\USER\stm32f10x.h
 ..\obj\pid.o: ..\CORE\core_cm3.h
 ..\obj\pid.o: D:\MySoftware\keil4\ARM\ARMCC\bin\..\include\stdint.h
@@ -15,6 +14,7 @@
 ..\obj\pid.o: ..\STM32F10x_FWLib\inc\stm32f10x_tim.h
 ..\obj\pid.o: ..\STM32F10x_FWLib\inc\stm32f10x_usart.h
 ..\obj\pid.o: ..\STM32F10x_FWLib\inc\misc.h
+..\obj\pid.o: ..\SYS\TIM2_CH4_PWM.h
 ..\obj\pid.o: ..\SYS\Sys.h
 ..\obj\pid.o: ..\HARDWARE\StepperMotor.h
 ..\obj\pid.o: ..\HARDWARE\usart.h
@@ -24,3 +24,4 @@
 ..\obj\pid.o: ..\HARDWARE\MINI256Z.h
 ..\obj\pid.o: ..\HARDWARE\Led.h
 ..\obj\pid.o: D:\MySoftware\keil4\ARM\ARMCC\bin\..\include\stdlib.h
+..\obj\pid.o: ..\HARDWARE\Filter.h

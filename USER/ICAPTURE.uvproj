@@ -452,6 +452,11 @@
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\MYDMA.c</FilePath>
             </File>
+            <File>
+              <FileName>Filter.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\Filter.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

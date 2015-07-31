@@ -1,5 +1,6 @@
 #ifndef __PID_H
 #define __PID_H
+#include "stm32f10x.h"
 
 #define USART_Commod_PID 0xfe
 #define USART_Commod_PID_SET_P 0xfd

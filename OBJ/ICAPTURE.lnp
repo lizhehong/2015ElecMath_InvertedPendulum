@@ -10,6 +10,7 @@
 "..\obj\mini256z.o"
 "..\obj\pid.o"
 "..\obj\mydma.o"
+"..\obj\filter.o"
 "..\obj\delay.o"
 "..\obj\sys.o"
 "..\obj\tim4.o"
