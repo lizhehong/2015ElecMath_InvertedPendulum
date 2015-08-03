@@ -1,7 +1,11 @@
 #include "Filter.h"
-
+#include "PID.h"
 Filtertypedef WindowFilter ;
-
+void Filter_Init(void){
+	char i = 0;
+	for(i=0;i<FilterLen;i++)
+		WindowFilter.Data[i] = pid.sp;
+}
 //窗口滑动滤波 加大分辨率 
 //就是滞后性增强 平滑增强
 double windowSlideFilter(double now){

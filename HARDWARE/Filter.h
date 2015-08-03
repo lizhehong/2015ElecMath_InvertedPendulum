@@ -9,5 +9,6 @@ typedef struct{
 extern Filtertypedef WindowFilter ;
 
 double windowSlideFilter(double now);
+void Filter_Init(void);
 #endif
 

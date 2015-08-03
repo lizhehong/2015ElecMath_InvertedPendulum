@@ -8,6 +8,20 @@
 #include <stdlib.h>
 #include "Filter.h"
 PIDtypedef pid;//PID算法用的数据结构
+
+void PID_Init(void){
+	pid.Angle = 0;
+	pid.error_d = 0;
+	pid.error_i = 0;
+	pid.error_p = 0;
+	pid.Kd = 0;
+	pid.Ki = 0;
+	pid.Kp = 0;
+	pid.lastAngle = 0;
+	pid.sp =512;
+	pid.speed = 0;
+	pid.velocity = 0;
+}
 //PID 三个参数由 USART设置
 char PID_SET_PID_OK  = 0x00;
 //200 180 1 平衡时间 14s <90°平衡时间 近8s
@@ -19,7 +33,7 @@ void PID_Control_V0_4(){
 		pid.lastAngle = pid.Angle;
 		pid.Angle = Get_Electrical_Position_MINI256Z();//使用位置值
 		//最高点的正负60度方位内才PID运行
-		if(pid.Angle<341 || pid.Angle>683){
+		if(pid.Angle<469 || pid.Angle>555){
 			SET_TIM2_CH4_Fre(0,clockwise);
 			pid.error_i = 0;
 			return;
@@ -38,10 +52,19 @@ void PID_Control_V0_4(){
 								(pid.Kd* pid.error_d);
 
 		
-		if(pid.speed <= 0){
+		if((pid.speed <= 0) && (pid.speed>=-3000)){
 			SET_TIM2_CH4_Fre(abs(pid.speed),clockwise);//频率没有正负的 要取绝对值
-			}else if(0 < pid.speed <= 3000){
+		}else if((0 < pid.speed) && (pid.speed<= 3000)){
 			SET_TIM2_CH4_Fre(pid.speed,anticlockwise);
+		}
+		else if(pid.speed<-3000){
+				pid.speed = -3000;
+				pid.error_i = 0;
+				SET_TIM2_CH4_Fre(3000,clockwise);//频率没有正负的 要取绝对值
+		}else if(pid.speed> 3000){
+				pid.speed = 3000;
+				pid.error_i = 0;
+				SET_TIM2_CH4_Fre(3000,anticlockwise);//频率没有正负的 要取绝对值
 		}
 }
 

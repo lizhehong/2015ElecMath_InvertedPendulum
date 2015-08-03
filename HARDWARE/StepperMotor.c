@@ -22,7 +22,7 @@ void Motor_GPIO_Configuration(void)
 	GPIO_InitTypeDef GPIO_InitStructure;
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB|RCC_APB2Periph_AFIO , ENABLE);
 	GPIO_PinRemapConfig(GPIO_FullRemap_TIM2 , ENABLE);
-	GPIO_PinRemapConfig(GPIO_Remap_SWJ_Disable, ENABLE);
+	//GPIO_PinRemapConfig(GPIO_Remap_SWJ_Disable, ENABLE);
 		
 	//PWM输出引脚
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_11 ;

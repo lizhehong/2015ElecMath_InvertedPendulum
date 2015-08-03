@@ -15,7 +15,7 @@ void TIM2_Configuration(void)
 	TIM_DeInit( TIM2);                               
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2, ENABLE);   
 	
-	TIM_BaseInitStructure.TIM_Period = 0; 		//这里设置无所谓 但是为了单片机能够立即响应 我应该清零
+	TIM_BaseInitStructure.TIM_Period = 10; 		//这里设置无所谓 但是为了单片机能够立即响应 我应该清零
 	TIM_BaseInitStructure.TIM_Prescaler = 7199;  		//分频系数 决定最高频率 3k 最低频率 0.3662109375HZ
 	TIM_BaseInitStructure.TIM_ClockDivision = 0; 
 	TIM_BaseInitStructure.TIM_CounterMode = TIM_CounterMode_Up;   

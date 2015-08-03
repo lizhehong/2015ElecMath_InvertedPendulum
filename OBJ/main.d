@@ -28,3 +28,4 @@
 ..\obj\main.o: ..\SYS\TIM4.h
 ..\obj\main.o: ..\HARDWARE\PID.h
 ..\obj\main.o: ..\HARDWARE\MYDMA.h
+..\obj\main.o: ..\HARDWARE\Filter.h

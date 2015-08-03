@@ -14,3 +14,4 @@
 ..\obj\filter.o: ..\STM32F10x_FWLib\inc\stm32f10x_tim.h
 ..\obj\filter.o: ..\STM32F10x_FWLib\inc\stm32f10x_usart.h
 ..\obj\filter.o: ..\STM32F10x_FWLib\inc\misc.h
+..\obj\filter.o: ..\HARDWARE\PID.h

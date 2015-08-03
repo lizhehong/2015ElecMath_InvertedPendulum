@@ -12,9 +12,10 @@
 #include "TIM4.h"
 #include "PID.h"
 #include "MYDMA.h"
+#include "Filter.h"
 int main(){
-	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_0);
 	usartParamsInit();
+	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_0);
 	usartConfigInit(115200);
 	usartParamsInit();
 	delay_init();
@@ -29,6 +30,8 @@ int main(){
 	MINI256Z_TIM3_Init();
 	MINI256_GPIO_Config();
 	MYDMA_Config(DMA1_Channel4,(u32)&USART1->DR,(u32)SendBuff,DMA_DataLen);//DMA1通道4，外设串口1，存储器为SendBuff   
+	PID_Init();
+	Filter_Init();//里面应用到了PID.sp所以需要PID初始化之后
 	while(1){
 		while(Usart_Commod_Flag == 0x20){
 			LED2 = 0;

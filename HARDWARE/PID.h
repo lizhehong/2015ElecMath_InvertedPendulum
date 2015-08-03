@@ -27,4 +27,5 @@ typedef struct{
 extern PIDtypedef pid;
 extern char PID_SET_PID_OK ;
 void PID_Control_V0_4(void);
+void PID_Init(void);
 #endif

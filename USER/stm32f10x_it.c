@@ -23,16 +23,18 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f10x_it.h" 
+#include "stdio.h"
 void NMI_Handler(void)
 {
 }
  
 void HardFault_Handler(void)
 {
-  /* Go to infinite loop when Hard Fault exception occurs */
-  while (1)
-  {
-  }
+	int i=0;
+	while(1){
+		i++;
+		return ;
+	}
 }
  
 void MemManage_Handler(void)
