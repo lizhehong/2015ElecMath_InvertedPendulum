@@ -118,7 +118,7 @@ void USART1_IRQHandler(){
 																					SET_TIM2_CH4_Fre(StepperMotor.FRE,StepperMotor.DIR);
 																					//USART_SendData(USART1,0x99);
 																					break;
-							case USART_TB6560_STOP:			TIM_SetCompare4(TIM2,0);//占空比总是占据0%
+							case USART_TB6560_STOP:			SET_TIM2_CH4_Fre(0,StepperMotor.DIR);
 																					break;
 							case USART_TB6560_FRE:			StepperMotor.FRE = atoi(StepperMotor.USART_DATA);
 																					SET_TIM2_CH4_Fre(StepperMotor.FRE,StepperMotor.DIR);
@@ -130,13 +130,24 @@ void USART1_IRQHandler(){
 							case USART_Commod_STOP:
 																					Usart_Commod_Flag = 0xff;//空闲状态
 																					break;
+							case USART_Commod_TB6560_PULSENUM:		
+																					Usart_Commod_Flag = 0xfd;
+																					break;
+							case USART_Commod_Motor_Position_Contrl: 
+																					if((PID_SET_PID_OK & 0xf0) == 0xf0){
+																						Usart_Commod_Flag =0xfc;
+																						PID_SET_PID_OK &= 0x0f;//不去干扰低四位的自由杆PID标志
+																					}
+																					break;
 							default: break;
 						}
 					}else if(USART_RX_BUF[0] == usartHead[2]){
 						switch(USART_RX_BUF[1]){
-							case USART_Commod_PID: 			if(PID_SET_PID_OK == 0x07){
+						//----------------------------自由杆的PID控制
+																					//低四位用来做自由杆控制
+							case USART_Commod_PID: 			if((PID_SET_PID_OK & 0x0f) == 0x0f){
 																						Usart_Commod_Flag = 0x40;//可以进行PID运算
-																						PID_SET_PID_OK = 0;
+																						PID_SET_PID_OK &= 0xf0;//不去干扰高四位的电机PID标志
 																					}	
 																					break;
 							case USART_Commod_PID_SET_P: 
@@ -150,6 +161,23 @@ void USART1_IRQHandler(){
 							case USART_Commod_PID_SET_d: 
 																					pid.Kd =  atof(StepperMotor.USART_DATA);
 																					PID_SET_PID_OK |= 0x04;
+																					break;
+							//----------------------------步进电机运行角度控制																			
+							case USART_Commod_PID_SET_P_Motor:
+																					pid4Motor.Kp = atof(StepperMotor.USART_DATA);
+																					PID_SET_PID_OK |=0x10;
+																					break;
+							case USART_Commod_PID_SET_I_Motor:
+																					pid4Motor.Ki = atof(StepperMotor.USART_DATA);
+																					PID_SET_PID_OK |=0x20;
+																					break;
+							case USART_Commod_PID_SET_D_Motor:
+																					pid4Motor.Kd = atof(StepperMotor.USART_DATA);
+																					PID_SET_PID_OK |=0x40;
+																					break;
+							case USART_Commod_PID_SET_SP_Motor: 
+																					pid4Motor.sp = atof(StepperMotor.USART_DATA);
+																					PID_SET_PID_OK |=0x80;
 																					break;
 							default: break;
 						}

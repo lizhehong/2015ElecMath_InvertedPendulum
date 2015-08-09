@@ -6,6 +6,10 @@
 #define USART_Commod_PID_SET_P 0xfd
 #define USART_Commod_PID_SET_i 0xfc
 #define USART_Commod_PID_SET_d 0xfb
+#define USART_Commod_PID_SET_P_Motor 0xf9
+#define USART_Commod_PID_SET_I_Motor 0xf8
+#define USART_Commod_PID_SET_D_Motor 0xf7
+#define	USART_Commod_PID_SET_SP_Motor 0xf6
 #define PID_k 2
 #define IMU_UPDATE_DT 100
 
@@ -26,6 +30,8 @@ typedef struct{
 }PIDtypedef;
 extern PIDtypedef pid;
 extern char PID_SET_PID_OK ;
+extern PIDtypedef pid4Motor;
 void PID_Control_V0_4(void);
 void PID_Init(void);
+void PID_Motor_Position_Control(void);
 #endif

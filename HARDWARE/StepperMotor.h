@@ -8,6 +8,8 @@
 #define USART_TB6560_DIR 0x99 //串口命令中的 方向
 #define USART_TB6560_FRE 0x97 //串口命令中的 电机工作频率
 #define USART_TB6560_STOP 0x89	//电机停止工作
+#define USART_Commod_TB6560_PULSENUM 0x93 //电机脉冲数
+#define USART_Commod_Motor_Position_Contrl 0x9a
 #define MAX_Motor_Fre 180 //电机不失步最高频率
 #define MIN_Motor_Fre 130 //电机不失步最低频率
 
@@ -18,6 +20,7 @@ typedef struct{
 	char USART_DATA[15];//串口对应的电机有效数据缓存
 	float StepAngle;//电机步转角
 	unsigned char subdivide; //电机的细分数 整部 半步 1/8 1/16
+	int ActualPulseNum;//得到的实时脉冲数
 }MOTORtypedef;
 
 extern MOTORtypedef StepperMotor;

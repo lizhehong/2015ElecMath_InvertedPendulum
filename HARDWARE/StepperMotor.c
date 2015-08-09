@@ -15,6 +15,7 @@ void MotorParamsInit(){
 	//顺时针
 	StepperMotor.DIR=clockwise; 
 	StepperMotor.FRE = 0;
+	StepperMotor.ActualPulseNum = 0;//说明上电一开始的位置就是0位置，上电以后的位置都是相对这个位置而言
 }
 //电机引脚配置
 void Motor_GPIO_Configuration(void)

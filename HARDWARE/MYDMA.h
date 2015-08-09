@@ -2,7 +2,7 @@
 #define	__MYDMA_H	
 #include "stm32f10x.h"
 
-#define DMA_DataLen 120
+#define DMA_DataLen 8
 
 
 extern u8 SendBuff[DMA_DataLen];

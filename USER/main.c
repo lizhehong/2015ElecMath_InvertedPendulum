@@ -47,10 +47,16 @@ int main(){
 		//此范围内，不要用阻塞的printf影响实时控制，或者其他通信破坏
 		while(Usart_Commod_Flag == 0x40){
 			LED2 = 0;
-			if((TIM4_TASK & 0x01) == 0x01){
+			if((TIM4_TASK & 0x01) == 0x01){//控制时间到
 				TIM4_TASK = TIM4_TASK&0xfe;
 				PID_Control_V0_4();
 			}
+		}while(Usart_Commod_Flag == 0xfc){
+				LED2 = 0;
+				if((TIM4_TASK & 0x02) == 0x02){//控制时间到
+					TIM4_TASK = TIM4_TASK&0xfd;
+					PID_Motor_Position_Control();
+				}
 		}
 	}
 }
